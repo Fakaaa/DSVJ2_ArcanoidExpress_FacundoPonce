@@ -29,6 +29,8 @@ public class Player : MonoBehaviour
         if(playerLifes <= 0)
         {
             playerLifes = 0;
+            if (GameManager.Get() != null)
+                GameManager.Get().SetStateGame(GameManager.GameState.Lose);
             isAlive = false;
         }
     }
