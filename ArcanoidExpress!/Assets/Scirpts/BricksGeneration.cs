@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class BricksGeneration : MonoBehaviour
@@ -12,20 +11,13 @@ public class BricksGeneration : MonoBehaviour
     private int maxTamZ;
     private float scaleXBricks;
     private float scaleZBricks;
-    private List<Color> colors;
+    [SerializeField] private List<Color> colors;
     void Start()
     {
         maxTamX = 9;
         maxTamZ = 6;
         scaleXBricks = prefabBrick.transform.localScale.x + offsetPerBrick;
         scaleZBricks = prefabBrick.transform.localScale.z + offsetPerBrick;
-        colors = new List<Color>();
-        colors.Add(Color.white);
-        colors.Add(Color.red);
-        colors.Add(Color.blue);
-        colors.Add(Color.magenta);
-        colors.Add(Color.yellow);
-        colors.Add(Color.green);
 
         MeshRenderer auxRender;
         for (int i = 0; i < maxTamZ; i++)
@@ -38,10 +30,5 @@ public class BricksGeneration : MonoBehaviour
                 auxRender.material.color = colors[i];
             }
         }
-    }
-
-    void Update()
-    {
-        
     }
 }
