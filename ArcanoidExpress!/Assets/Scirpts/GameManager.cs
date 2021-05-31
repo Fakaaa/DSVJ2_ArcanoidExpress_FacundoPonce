@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        bestScore = 0;
+        bestScore = PlayerPrefs.GetInt("score", 0);
     }
     public enum GameState
     {
@@ -83,6 +83,9 @@ public class GameManager : MonoBehaviour
     public void SetHighScore(int score)
     {
         if(score > bestScore)
-            bestScore += score;
+            bestScore = score;
+
+        PlayerPrefs.SetInt("score", bestScore);
+        PlayerPrefs.Save();
     }
 }
