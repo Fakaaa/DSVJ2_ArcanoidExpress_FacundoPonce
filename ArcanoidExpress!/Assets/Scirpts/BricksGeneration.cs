@@ -30,5 +30,8 @@ public class BricksGeneration : MonoBehaviour
                 auxRender.material.color = colors[i];
             }
         }
+
+        if(GameManager.Get()!= null)
+            GameManager.Get().SetActualBricks(maxTamX * maxTamZ);
     }
 }

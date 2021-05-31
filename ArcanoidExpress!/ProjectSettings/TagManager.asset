@@ -7,11 +7,7 @@ TagManager:
   - Ball
   - Brick
   - Wall
-  - Center
-  - LeftCenter
-  - LeftSide
-  - RightCenter
-  - RightSide
+  - WallTop
   layers:
   - Default
   - TransparentFX

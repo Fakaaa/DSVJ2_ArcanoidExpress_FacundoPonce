@@ -38,7 +38,10 @@ public class Player : MonoBehaviour
         {
             playerLifes = 0;
             if (GameManager.Get() != null)
+            {
+                GameManager.Get().SetHighScore(GameManager.Get().scorePlayer);
                 GameManager.Get().SetStateGame(GameManager.GameState.Lose);
+            }
             isAlive = false;
         }
         else

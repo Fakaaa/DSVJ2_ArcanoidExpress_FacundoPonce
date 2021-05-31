@@ -20,6 +20,10 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    private void Start()
+    {
+        bestScore = 0;
+    }
     public enum GameState
     {
         Win,
@@ -30,6 +34,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GameState state;
     [SerializeField] public int scorePlayer;
     [SerializeField] public int bestScore;
+    [SerializeField] public int amountBricksRemaining;
+    [SerializeField] public int actualBricks;
+    [SerializeField] public int bricksDestroyed;
 
     public void SetStateGame(GameState actualState)
     {
@@ -54,13 +61,28 @@ public class GameManager : MonoBehaviour
         }
         state = actualState;
     }
+    public void SetActualBricks(int amount)
+    {
+        actualBricks = amount;
+
+        CalcBricksRemaining();
+    }
+    public void BrickDestroyed()
+    {
+        bricksDestroyed++;
+        CalcBricksRemaining();
+    }
+    public void CalcBricksRemaining()
+    {
+        amountBricksRemaining = actualBricks - bricksDestroyed;
+    }
     public void SetScore(int score)
     {
-        scorePlayer = score;
+        scorePlayer += score;
     }
     public void SetHighScore(int score)
     {
         if(score > bestScore)
-            bestScore = score;
+            bestScore += score;
     }
 }

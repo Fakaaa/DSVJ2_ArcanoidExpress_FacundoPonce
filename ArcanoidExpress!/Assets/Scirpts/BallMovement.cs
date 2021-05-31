@@ -11,11 +11,9 @@ public class BallMovement : MonoBehaviour
     [SerializeField] private Vector3 directionBall;
     [SerializeField] private float speedBall;
 
+    [SerializeField] private int scoreAmountPerBrickHit;
     [SerializeField] private float lenghtRaycast;
     private Vector3 initialScale;
-
-    private Ray rayFromBall;
-    private RaycastHit hitBall;
 
     void Start()
     {
@@ -45,11 +43,6 @@ public class BallMovement : MonoBehaviour
         transform.localScale = initialScale;
         directionBall = transform.forward;
     }
-    private void UpdateRay()
-    {
-        rayFromBall = new Ray(transform.position, transform.forward * lenghtRaycast);
-        Debug.DrawRay(rayFromBall.origin, rayFromBall.direction * lenghtRaycast, Color.red);
-    }
     void MoveBall()
     {
         transform.position += directionBall * speedBall * Time.deltaTime;
@@ -58,20 +51,11 @@ public class BallMovement : MonoBehaviour
     {
         if (isMoving)
             MoveBall();
-
-        RaycastCheckCollision();
-
-        UpdateRay();
-    }
-    void RaycastCheckCollision()
-    {
-        if(Physics.Raycast(rayFromBall, out hitBall, lenghtRaycast))
-        {
-           
-        }
     }
     private void OnCollisionEnter(Collision collision)
     {
+        speedBall += 0.2f;
+
         if (collision.collider.CompareTag("Player"))
         {
             Vector3 resultDirection = transform.position - collision.collider.gameObject.transform.position;
@@ -82,7 +66,18 @@ public class BallMovement : MonoBehaviour
             if(collision.collider.CompareTag("Wall"))
                 directionBall = new Vector3(-directionBall.x, directionBall.y, directionBall.z);
             else
+            {
                 directionBall = new Vector3(directionBall.x, directionBall.y, -directionBall.z);
+                if(!collision.collider.CompareTag("WallTop"))
+                {
+                    Destroy(collision.collider.gameObject);
+                    if (GameManager.Get() != null)
+                    {
+                        GameManager.Get().SetScore(scoreAmountPerBrickHit);
+                        GameManager.Get().BrickDestroyed();
+                    }
+                }
+            }
         }
     }
 }
