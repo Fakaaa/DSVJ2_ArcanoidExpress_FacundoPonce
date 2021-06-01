@@ -57,7 +57,7 @@ public class BallMovement : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        speedBall += 0.2f;
+        speedBall += 0.1f;
 
         if (collision.collider.CompareTag("Player"))
         {

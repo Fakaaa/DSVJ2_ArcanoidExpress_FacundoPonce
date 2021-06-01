@@ -75,6 +75,9 @@ public class GameManager : MonoBehaviour
     public void CalcBricksRemaining()
     {
         amountBricksRemaining = actualBricks - bricksDestroyed;
+
+        if(amountBricksRemaining <= 0)
+            SetStateGame(GameState.Win);
     }
     public void ResetScore()
     {
