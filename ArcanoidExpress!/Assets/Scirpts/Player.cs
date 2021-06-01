@@ -27,6 +27,8 @@ public class Player : MonoBehaviour
     {
         myRefBall = FindObjectOfType<BallMovement>();
         isAlive = true;
+        if (GameManager.Get() != null)
+            GameManager.Get().ResetScore();
         TriggerLostBall.playerLostBall += RestLife;
         updateUIData?.Invoke();
     }

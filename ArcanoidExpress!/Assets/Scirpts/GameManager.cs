@@ -76,6 +76,10 @@ public class GameManager : MonoBehaviour
     {
         amountBricksRemaining = actualBricks - bricksDestroyed;
     }
+    public void ResetScore()
+    {
+        scorePlayer = 0;
+    }
     public void SetScore(int score)
     {
         scorePlayer += score;

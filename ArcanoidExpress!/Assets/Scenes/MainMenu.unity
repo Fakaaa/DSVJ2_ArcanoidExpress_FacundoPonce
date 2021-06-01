@@ -603,18 +603,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0bf3e0180388d54991e820a06fd84b2, type: 3}
---- !u!114 &976379746 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 850787038854987064, guid: d0bf3e0180388d54991e820a06fd84b2,
-    type: 3}
-  m_PrefabInstance: {fileID: 976379745}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e92a7ddfba4bd9c42aaee8ed616fc623, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1013839033
 GameObject:
   m_ObjectHideFlags: 0
@@ -960,7 +948,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 976379746}
+      - m_Target: {fileID: 850787038854987064, guid: d0bf3e0180388d54991e820a06fd84b2,
+          type: 3}
         m_MethodName: QuitApp
         m_Mode: 1
         m_Arguments:
@@ -1324,7 +1313,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 976379746}
+      - m_Target: {fileID: 850787038854987064, guid: d0bf3e0180388d54991e820a06fd84b2,
+          type: 3}
         m_MethodName: LoadScene
         m_Mode: 5
         m_Arguments:
