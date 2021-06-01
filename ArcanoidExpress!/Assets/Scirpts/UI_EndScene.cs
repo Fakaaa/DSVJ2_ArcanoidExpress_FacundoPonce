@@ -5,6 +5,8 @@ public class UI_EndScene : MonoBehaviour
 {
     [SerializeField] public GameObject win;
     [SerializeField] public GameObject lose;
+    [SerializeField] public Text highScore;
+    [SerializeField] public Text lastScore;
     void Start()
     {
         if(GameManager.Get() != null)
@@ -20,11 +22,8 @@ public class UI_EndScene : MonoBehaviour
                     win.SetActive(false);
                     break;
             }
+            lastScore.text = GameManager.Get().scorePlayer.ToString();
+            highScore.text = GameManager.Get().bestScore.ToString();
         }
-    }
-
-    void Update()
-    {
-        
     }
 }
