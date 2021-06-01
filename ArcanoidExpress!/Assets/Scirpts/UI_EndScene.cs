@@ -22,8 +22,8 @@ public class UI_EndScene : MonoBehaviour
                     win.SetActive(false);
                     break;
             }
-            lastScore.text = GameManager.Get().scorePlayer.ToString();
-            highScore.text = GameManager.Get().bestScore.ToString();
+            lastScore.text = "LAST SCORE\n" + GameManager.Get().scorePlayer.ToString();
+            highScore.text = "HIGHSCORE\n" + GameManager.Get().bestScore.ToString();
         }
     }
 }
