@@ -14,9 +14,11 @@ public class BallMovement : MonoBehaviour
     [SerializeField] private int scoreAmountPerBrickHit;
     [SerializeField] private float lenghtRaycast;
     private Vector3 initialScale;
+    private float initialSpeedBall;
 
     void Start()
     {
+        initialSpeedBall = speedBall;
         initialScale = transform.localScale;
         directionBall = transform.forward;
         startPos.position = transform.position;
@@ -38,6 +40,7 @@ public class BallMovement : MonoBehaviour
     void AttachBallToPlayer()
     {
         isMoving = false;
+        speedBall = initialSpeedBall;
         transform.position = startPos.position;
         transform.parent = playerTransform;
         transform.localScale = initialScale;

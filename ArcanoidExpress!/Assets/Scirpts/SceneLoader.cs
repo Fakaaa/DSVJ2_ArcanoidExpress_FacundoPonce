@@ -22,4 +22,11 @@ public class SceneLoader : MonoBehaviour
     {
         SceneManager.LoadScene(nameScene);
     }
+    public void QuitApp()
+    {
+        Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+    }
 }

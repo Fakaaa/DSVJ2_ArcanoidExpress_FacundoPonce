@@ -17,14 +17,18 @@ public class Player : MonoBehaviour
 
     public delegate void PlayerShootBall();
     public delegate void PlayerLosesTheBall();
+    public delegate void PlayerPassInfoUI();
+
     public static PlayerShootBall playerReleasesBall;
     public static PlayerLosesTheBall ballRespawn;
+    public static PlayerPassInfoUI updateUIData;
 
     private void Start()
     {
         myRefBall = FindObjectOfType<BallMovement>();
         isAlive = true;
         TriggerLostBall.playerLostBall += RestLife;
+        updateUIData?.Invoke();
     }
     private void OnDisable()
     {
@@ -33,6 +37,8 @@ public class Player : MonoBehaviour
     public void RestLife()
     {
         playerLifes--;
+
+        updateUIData?.Invoke();
 
         if (playerLifes <= 0)
         {
@@ -46,6 +52,10 @@ public class Player : MonoBehaviour
         }
         else
             ballRespawn?.Invoke();
+    }
+    public int GetPlayerLifes()
+    {
+        return playerLifes;
     }
     void MovePlayer()
     {

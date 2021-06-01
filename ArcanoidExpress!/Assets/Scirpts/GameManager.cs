@@ -79,6 +79,8 @@ public class GameManager : MonoBehaviour
     public void SetScore(int score)
     {
         scorePlayer += score;
+
+        Player.updateUIData?.Invoke();
     }
     public void SetHighScore(int score)
     {
