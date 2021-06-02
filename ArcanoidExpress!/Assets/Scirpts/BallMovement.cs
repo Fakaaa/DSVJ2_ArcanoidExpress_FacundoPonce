@@ -70,15 +70,26 @@ public class BallMovement : MonoBehaviour
                 directionBall = new Vector3(-directionBall.x, directionBall.y, directionBall.z);
             else
             {
-                directionBall = new Vector3(directionBall.x, directionBall.y, -directionBall.z);
-                if(!collision.collider.CompareTag("WallTop"))
+                if (collision.collider.CompareTag("Brick"))
                 {
+                    if(transform.position.x > (collision.collider.transform.position.x + (collision.transform.localScale.x * 0.5f)) ||
+                       transform.position.x < (collision.collider.transform.position.x - (collision.transform.localScale.x * 0.5f)))
+                    {
+                        directionBall = new Vector3(-directionBall.x, directionBall.y, directionBall.z);
+                    }
+                    else
+                       directionBall = new Vector3(directionBall.x, directionBall.y, -directionBall.z);
+
                     Destroy(collision.collider.gameObject);
                     if (GameManager.Get() != null)
                     {
                         GameManager.Get().SetScore(scoreAmountPerBrickHit);
                         GameManager.Get().BrickDestroyed();
                     }
+                }
+                if(collision.collider.CompareTag("WallTop"))
+                {
+                    directionBall = new Vector3(directionBall.x, directionBall.y, -directionBall.z);
                 }
             }
         }
